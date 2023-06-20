@@ -16,8 +16,8 @@
       <div class="content">
         <div class="tabs-container">
           <div class="tabs">
-            <p>Timer</p>
-            <p>StopWatch</p>
+            <p class="timer">Timer</p>
+            <p class="stopwatch">StopWatch</p>
           </div>
         </div>
         <section>
@@ -28,8 +28,13 @@
                   type="number"
                   name="hours"
                   id="hours"
-                  placeholder="00" /></span
-              ><span>h</span>
+                  placeholder="00"
+                  maxlength="2"
+                  value=""
+                  oninput="limitInput(this, 23)"
+                />
+              </span>
+              <span>h</span>
             </p>
             <p>
               <span class="minutes"
@@ -37,8 +42,13 @@
                   type="number"
                   name="minutes"
                   id="minutes"
-                  placeholder="00" /></span
-              ><span>m</span>
+                  placeholder="00"
+                  maxlength="2"
+                  value=""
+                  oninput="limitInput(this, 59)"
+                />
+              </span>
+              <span>m</span>
             </p>
             <p>
               <span class="seconds"
@@ -46,14 +56,20 @@
                   type="number"
                   name="seconds"
                   id="seconds"
-                  placeholder="00" /></span
-              ><span>s</span>
+                  placeholder="00"
+                  maxlength="2"
+                  value=""
+                  oninput="limitInput(this, 59)"
+                />
+              </span>
+              <span>s</span>
             </p>
           </div>
         </section>
         <div class="footer-content">
           <div class="buttons-container">
-            <button class="start btn">Start</button>
+            <button class="start btn" onclick="startTimer">Start</button>
+            <button class="start btn" onclick="stopTimer()">Stop</button>
             <button class="reset btn">Reset</button>
           </div>
           <div class="icons">
