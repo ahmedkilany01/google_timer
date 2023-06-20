@@ -9,7 +9,7 @@ function startTimer() {
 
   start = Date.now();
   end = start + totalSeconds * 1000;
-  interval = setInterval();
+  interval = setInterval(updateTimer, 1000);
 }
 
 function stopTimer() {}
@@ -27,9 +27,9 @@ function updateTimer() {
     return;
   }
 
-  let hours = Math.floor(elapsedTime / 3600000);
-  let minutes = Math.floor((elapsedTime % 3600000) / 60000);
-  let seconds = Math.floor((elapsedTime % 60000) / 1000);
+  let hours = Math.floor(elapsed / 3600000);
+  let minutes = Math.floor((elapsed % 3600000) / 60000);
+  let seconds = Math.floor((elapsed % 60000) / 1000);
 
   hours = String(hours).padStart(2, "0");
   minutes = String(minutes).padStart(2, "0");
@@ -59,4 +59,12 @@ function limitInput(input, max) {
   if (parseInt(value) > max) {
     input.value = max;
   }
+}
+
+function resetTimer() {
+  clearInterval(interval);
+  elapsed = 0;
+  document.getElementById("seconds").textContent = "";
+  document.getElementById("minutes").textContent = "";
+  document.getElementById("hours").textContent = "";
 }
