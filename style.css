@@ -9,6 +9,12 @@
   --duration: 0.25s;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -88,13 +94,19 @@ main {
   color: var(--text);
   gap: 15px;
   border-bottom: 1px solid var(--border);
-  width: 40%;
+  width: 65%;
   margin: 15px 0;
 }
 
-.counter-container p {
+.counter-container input[type="number"] {
+  height: 40px;
+  width: 70px;
   font-size: 52px;
   font-weight: 500;
+  background-color: transparent;
+  color: var(--text);
+  border: none;
+  outline: none;
 }
 
 .counter-container span {
