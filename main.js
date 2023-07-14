@@ -1,5 +1,12 @@
 let start, end, interval, elapsed;
 
+const start_button = document.getElementById("start");
+const stop_button = document.getElementById("stop");
+const reset_button = document.getElementById("reset");
+const seconds = document.getElementById("seconds");
+const minutes = document.getElementById("minutes");
+const hours = document.getElementById("hours");
+
 function startTimer() {
   let seconds = parseInt(document.getElementById("seconds").value || 0);
   let minutes = parseInt(document.getElementById("minutes").value || 0);
@@ -12,17 +19,15 @@ function startTimer() {
   interval = setInterval(updateTimer, 1000);
 }
 
-function stopTimer() {}
-
 function updateTimer() {
   let current = Date.now();
   let elapsed = end - current;
 
   if (elapsed <= 0) {
     clearInterval(interval);
-    document.getElementById("seconds").textContent = "00";
-    document.getElementById("minutes").textContent = "00";
-    document.getElementById("hours").textContent = "00";
+    seconds.textContent = "00";
+    minutes.textContent = "00";
+    hours.textContent = "00";
 
     return;
   }
@@ -35,9 +40,9 @@ function updateTimer() {
   minutes = String(minutes).padStart(2, "0");
   seconds = String(seconds).padStart(2, "0");
 
-  document.getElementById("seconds").textContent = seconds;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("hours").textContent = hours;
+  seconds.textContent = seconds;
+  minutes.textContent = minutes;
+  hours.textContent = hours;
 }
 
 function limitInput(input, max) {
@@ -64,7 +69,9 @@ function limitInput(input, max) {
 function resetTimer() {
   clearInterval(interval);
   elapsed = 0;
-  document.getElementById("seconds").textContent = "";
-  document.getElementById("minutes").textContent = "";
-  document.getElementById("hours").textContent = "";
+  seconds.value = "";
+  minutes.value = "";
+  hours.value = "";
 }
+
+reset_button.addEventListener("click", () => resetTimer());
