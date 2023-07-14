@@ -1,48 +1,41 @@
-let start, end, interval, elapsed;
+let start = null,
+  end,
+  interval,
+  elapsed;
 
 const start_button = document.getElementById("start");
 const stop_button = document.getElementById("stop");
 const reset_button = document.getElementById("reset");
-const seconds = document.getElementById("seconds");
-const minutes = document.getElementById("minutes");
-const hours = document.getElementById("hours");
 
-function startTimer() {
-  let seconds = parseInt(document.getElementById("seconds").value || 0);
-  let minutes = parseInt(document.getElementById("minutes").value || 0);
-  let hours = parseInt(document.getElementById("hours").value || 0);
+const seconds_input = document.getElementById("seconds");
+const minutes_input = document.getElementById("minutes");
+const hours_input = document.getElementById("hours");
 
-  let totalSeconds = seconds + minutes * 60 + hours * 60 * 60;
-
-  start = Date.now();
-  end = start + totalSeconds * 1000;
-  interval = setInterval(updateTimer, 1000);
+function timer() {
+  if (
+    seconds_input.value == 0 &&
+    minutes_input.value == 0 &&
+    hours_input.value == 0
+  ) {
+    seconds_input.value = minutes_input.value = hours_input.value = "";
+  } else if (seconds_input.value != 0) {
+    seconds_input.value--;
+  } else if (minutes_input.value != 0 && seconds_input == 0) {
+    seconds_input.value = 59;
+  }
 }
 
-function updateTimer() {
-  let current = Date.now();
-  let elapsed = end - current;
-
-  if (elapsed <= 0) {
-    clearInterval(interval);
-    seconds.textContent = "00";
-    minutes.textContent = "00";
-    hours.textContent = "00";
-
-    return;
+function startTimer() {
+  function start_interval() {
+    start = setInterval(() => {
+      timer();
+    }, 1000);
   }
+  start_interval();
+}
 
-  let hours = Math.floor(elapsed / 3600000);
-  let minutes = Math.floor((elapsed % 3600000) / 60000);
-  let seconds = Math.floor((elapsed % 60000) / 1000);
-
-  hours = String(hours).padStart(2, "0");
-  minutes = String(minutes).padStart(2, "0");
-  seconds = String(seconds).padStart(2, "0");
-
-  seconds.textContent = seconds;
-  minutes.textContent = minutes;
-  hours.textContent = hours;
+function stopTimer() {
+  clearInterval(startTimer);
 }
 
 function limitInput(input, max) {
@@ -67,11 +60,13 @@ function limitInput(input, max) {
 }
 
 function resetTimer() {
-  clearInterval(interval);
-  elapsed = 0;
-  seconds.value = "";
-  minutes.value = "";
-  hours.value = "";
+  seconds_input.value = "";
+  minutes_input.value = "";
+  hours_input.value = "";
+
+  stopTimer();
 }
 
+start_button.addEventListener("click", () => startTimer());
+stop_button.addEventListener("click", () => stopTimer());
 reset_button.addEventListener("click", () => resetTimer());
