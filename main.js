@@ -15,6 +15,7 @@ function timer() {
     hours_input.value == 0
   ) {
     seconds_input.value = minutes_input.value = hours_input.value = "";
+    stopTimer();
   } else if (seconds_input.value != 0) {
     seconds_input.value--;
   } else if (minutes_input.value != 0 && seconds_input.value == 0) {
