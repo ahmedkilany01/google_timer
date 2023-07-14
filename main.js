@@ -1,7 +1,4 @@
-let start = null,
-  end,
-  interval,
-  elapsed;
+let start = null;
 
 const start_button = document.getElementById("start");
 const stop_button = document.getElementById("stop");
@@ -20,8 +17,12 @@ function timer() {
     seconds_input.value = minutes_input.value = hours_input.value = "";
   } else if (seconds_input.value != 0) {
     seconds_input.value--;
-  } else if (minutes_input.value != 0 && seconds_input == 0) {
+  } else if (minutes_input.value != 0 && seconds_input.value == 0) {
     seconds_input.value = 59;
+    minutes_input.value--;
+  } else if (hours_input.value != 0 && minutes_input.value == 0) {
+    minutes_input.value = 60;
+    hours_input.value--;
   }
 }
 
@@ -35,7 +36,7 @@ function startTimer() {
 }
 
 function stopTimer() {
-  clearInterval(startTimer);
+  clearInterval(start);
 }
 
 function limitInput(input, max) {
