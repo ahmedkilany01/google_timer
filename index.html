@@ -30,7 +30,7 @@
                   id="hours"
                   placeholder="00"
                   maxlength="2"
-                  value=""
+                  value="00"
                   oninput="limitInput(this, 23)"
                 />
               </span>
@@ -44,7 +44,7 @@
                   id="minutes"
                   placeholder="00"
                   maxlength="2"
-                  value=""
+                  value="00"
                   oninput="limitInput(this, 59)"
                 />
               </span>
@@ -58,7 +58,7 @@
                   id="seconds"
                   placeholder="00"
                   maxlength="2"
-                  value=""
+                  value="00"
                   oninput="limitInput(this, 59)"
                 />
               </span>
@@ -68,9 +68,9 @@
         </section>
         <div class="footer-content">
           <div class="buttons-container">
-            <button class="start btn" onclick="startTimer()">Start</button>
-            <button class="start btn" onclick="stopTimer()">Stop</button>
-            <button class="reset btn" onclick="resetTimer()">Reset</button>
+            <button class="start btn" id="start">Start</button>
+            <button class="start btn" id="stop">Stop</button>
+            <button class="reset btn" id="reset">Reset</button>
           </div>
           <div class="icons">
             <i class="fa-sharp fa-solid fa-volume-high"></i>
